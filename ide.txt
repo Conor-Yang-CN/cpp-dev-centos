@@ -16,7 +16,7 @@ $ yum update -y
 $ yum install -y kernel kernel-devel gcc
 $ rpm -qa | grep kernel
 
-$ cd /run/media/sysop/VBox_Gas_5.2.18
+$ cd /run/media/sysop/VBox_Gas_5.2.20
 $ sh ./VBoxLinuxAdditions.run
 
 # Install GCC
@@ -59,20 +59,39 @@ $ yum install -y gedit-plugins
 $ yum install -y qt4-devel qt-creator
 
 # Install eclipse-cpp
-$ wget http://mirrors.ustc.edu.cn/eclipse/technology/epp/downloads/release/photon/R/eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz -P /opt/software/
-$ tar -zxvf eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz -C /opt/modules
-$ cd /opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64
+$ wget http://mirrors.ustc.edu.cn/eclipse/technology/epp/downloads/release/photon/R/eclipse-cpp-2018-09-linux-gtk-x86_64.tar.gz -P /opt/software/
+$ tar -zxvf eclipse-cpp-2018-09-linux-gtk-x86_64.tar.gz -C /opt/modules
+$ cd /opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64
 
 $ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
 > [Desktop Entry]
 > Encoding=UTF-8
 > Type=Application
 > Name=eclipse-cpp
-> Comment=eclipse-cpp-photon-R-linux-gtk-x86_64
-> Exec=/opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64/eclipse
-> Icon=/opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64/icon.xpm
+> Comment=eclipse-cpp-2018-09-linux-gtk-x86_64
+> Exec=/opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64/eclipse
+> Icon=/opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64/icon.xpm
 > Categories=Development;IDE;C++;
 > Keywords=eclipse;C++;IDE;Development;
+> Version=1.0
+> Terminal=false
+> EOF
+
+# Install eclipse-java
+$ wget http://mirrors.neusoft.edu.cn/eclipse/technology/epp/downloads/release/2018-09/R/eclipse-java-2018-09-linux-gtk-x86_64.tar.gz -P /opt/software/
+$ tar -zxvf eclipse-java-2018-09-linux-gtk-x86_64.tar.gz -C /opt/modules
+$ cd /opt/modules/eclipse-java-2018-09-linux-gtk-x86_64
+
+$ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
+> [Desktop Entry]
+> Encoding=UTF-8
+> Type=Application
+> Name=eclipse-cpp
+> Comment=eclipse-java-2018-09-linux-gtk-x86_64
+> Exec=/opt/modules/eclipse-java-2018-09-linux-gtk-x86_64/eclipse
+> Icon=/opt/modules/eclipse-java-2018-09-linux-gtk-x86_64/icon.xpm
+> Categories=Development;IDE;Java;
+> Keywords=eclipse;Java;IDE;Development;
 > Version=1.0
 > Terminal=false
 > EOF
@@ -98,9 +117,10 @@ $ java -version
 $ mkdir -p /opt/software/
 $ wget http://mirrors.tuna.tsinghua.edu.cn/apache//ant/binaries/apache-ant-1.10.5-bin.zip -P /opt/software/
 $ unzip apache-ant-1.10.5-bin.zip -d /opt/modules
+$ cd /opt/modules/apache-ant-1.10.5
 
 $ vi /etc/profile
-  export ANT_HOME=/opt/apache-ant
+  export ANT_HOME=/opt/modules/apache-ant-1.10.5
   export PATH=$PATH:$ANT_HOME/bin/
 $ source /etc/profile
 $ ant -version
@@ -109,9 +129,10 @@ $ ant -version
 $ mkdir -p /opt/software/
 $ wget http://mirrors.shu.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz -P /opt/software/
 $ tar -zxvf apache-maven-3.5.4-bin.tar.gz -C /opt/modules
+$ cd /opt/modules/apache-maven-3.5.4
 
 $ vi /etc/profile
-  export M2_HOME=/opt/apache-maven
+  export M2_HOME=/opt/modules/apache-maven-3.5.4
   export PATH=$PATH:$M2_HOME/bin/
 $ source /etc/profile
 $ mvn -version
