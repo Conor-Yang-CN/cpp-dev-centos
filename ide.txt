@@ -1,0 +1,117 @@
+$ uname -a
+$ hostname
+$ hostnamectl set-hostname cpp-dev
+
+# firewall
+$ systemctl stop firewalld
+$ systemctl disable firewalld
+$ systemctl restart network
+
+# Add Repository
+$ yum --enablerepo=extras install -y epel-release
+$ yum repolist
+$ yum update -y
+
+# Install VBox
+$ yum install -y kernel kernel-devel gcc
+$ rpm -qa | grep kernel
+
+$ cd /run/media/sysop/VBox_Gas_5.2.18
+$ sh ./VBoxLinuxAdditions.run
+
+# Install GCC
+$ yum install -y gcc gcc-c++ make
+$ yum install -y graphviz doxygen
+$ doxygen --version
+
+# Install GCC-4.8
+$ curl -Lks http://www.hop5.in/yum/el6/hop5.repo > /etc/yum.repos.d/hop5.repo
+$ yum install -y gcc gcc-g++
+$ gcc --version
+
+# Install GCC-4.9
+$ yum install -y centos-release-scl
+$ yum install -y devtoolset-3-toolchain
+$ scl enable devtoolset-3 bash
+$ gcc --version
+
+# Install GCC-5.3
+$ yum install -y centos-release-scl
+$ yum install -y devtoolset-4-toolchain
+$ scl enable devtoolset-4 bash
+$ gcc --version
+
+# Install cmake
+$ yum install -y cmake
+# Compile cmake
+$ wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz -P /opt/software/
+$ tar -zxvf cmake-3.12.1.tar.gz -C /opt/modules
+$ cd /opt/modules/cmake-3.12.1
+
+$ ./bootstrap
+$ gmake
+$ gmake install
+$ ln -s /opt/modules/cmake-3.12.1/bin/cmake /usr/bin/
+$ cmake --version
+
+# Install IDE
+$ yum install -y gedit-plugins
+$ yum install -y qt4-devel qt-creator
+
+# Install eclipse-cpp
+$ wget http://mirrors.ustc.edu.cn/eclipse/technology/epp/downloads/release/photon/R/eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz -P /opt/software/
+$ tar -zxvf eclipse-cpp-photon-R-linux-gtk-x86_64.tar.gz -C /opt/modules
+$ cd /opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64
+
+$ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
+> [Desktop Entry]
+> Encoding=UTF-8
+> Type=Application
+> Name=eclipse-cpp
+> Comment=eclipse-cpp-photon-R-linux-gtk-x86_64
+> Exec=/opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64/eclipse
+> Icon=/opt/modules/eclipse-cpp-photon-R-linux-gtk-x86_64/icon.xpm
+> Categories=Development;IDE;C++;
+> Keywords=eclipse;C++;IDE;Development;
+> Version=1.0
+> Terminal=false
+> EOF
+
+# Install Tools
+$ yum install -y lrzsz
+$ yum install -y zip unzip
+$ yum install -y wget lsof
+
+# Install JDK
+$ mkdir -p /opt/modules/
+$ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz -P /opt/software/
+$ tar -zxvf jdk-8u181-linux-x64.tar.gz -C /opt/modules/
+
+$ vi /etc/profile
+  export JAVA_HOME=/opt/modules/jdk1.8.0_181
+  export PATH=$JAVA_HOME/bin:$PATH
+$ source /etc/profile
+$ echo $JAVA_HOME
+$ java -version
+
+# Install Ant
+$ mkdir -p /opt/software/
+$ wget http://mirrors.tuna.tsinghua.edu.cn/apache//ant/binaries/apache-ant-1.10.5-bin.zip -P /opt/software/
+$ unzip apache-ant-1.10.5-bin.zip -d /opt/modules
+
+$ vi /etc/profile
+  export ANT_HOME=/opt/apache-ant
+  export PATH=$PATH:$ANT_HOME/bin/
+$ source /etc/profile
+$ ant -version
+
+# Install Maven
+$ mkdir -p /opt/software/
+$ wget http://mirrors.shu.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz -P /opt/software/
+$ tar -zxvf apache-maven-3.5.4-bin.tar.gz -C /opt/modules
+
+$ vi /etc/profile
+  export M2_HOME=/opt/apache-maven
+  export PATH=$PATH:$M2_HOME/bin/
+$ source /etc/profile
+$ mvn -version
