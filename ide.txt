@@ -61,16 +61,17 @@ $ yum install -y qt4-devel qt-creator
 # Install eclipse-cpp
 $ wget http://mirrors.ustc.edu.cn/eclipse/technology/epp/downloads/release/photon/R/eclipse-cpp-2018-09-linux-gtk-x86_64.tar.gz -P /opt/software/
 $ tar -zxvf eclipse-cpp-2018-09-linux-gtk-x86_64.tar.gz -C /opt/modules
-$ cd /opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64
+$ mv /opt/modules/eclipse /opt/modules/eclipse-cpp-4.9.0
+$ cd /opt/modules/eclipse-cpp-4.9.0
 
 $ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
 > [Desktop Entry]
 > Encoding=UTF-8
 > Type=Application
 > Name=eclipse-cpp
-> Comment=eclipse-cpp-2018-09-linux-gtk-x86_64
-> Exec=/opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64/eclipse
-> Icon=/opt/modules/eclipse-cpp-2018-09-linux-gtk-x86_64/icon.xpm
+> Comment=eclipse-cpp-4.9.0
+> Exec=/opt/modules/eclipse-cpp-4.9.0/eclipse
+> Icon=/opt/modules/eclipse-cpp-4.9.0/icon.xpm
 > Categories=Development;IDE;C++;
 > Keywords=eclipse;C++;IDE;Development;
 > Version=1.0
@@ -80,16 +81,17 @@ $ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
 # Install eclipse-java
 $ wget http://mirrors.neusoft.edu.cn/eclipse/technology/epp/downloads/release/2018-09/R/eclipse-java-2018-09-linux-gtk-x86_64.tar.gz -P /opt/software/
 $ tar -zxvf eclipse-java-2018-09-linux-gtk-x86_64.tar.gz -C /opt/modules
-$ cd /opt/modules/eclipse-java-2018-09-linux-gtk-x86_64
+$ mv /opt/modules/eclipse /opt/modules/eclipse-java-4.9.0
+$ cd /opt/modules/eclipse-java-4.9.0
 
 $ cat > /usr/share/applications/eclipse-cpp.desktop << EOF
 > [Desktop Entry]
 > Encoding=UTF-8
 > Type=Application
-> Name=eclipse-cpp
-> Comment=eclipse-java-2018-09-linux-gtk-x86_64
-> Exec=/opt/modules/eclipse-java-2018-09-linux-gtk-x86_64/eclipse
-> Icon=/opt/modules/eclipse-java-2018-09-linux-gtk-x86_64/icon.xpm
+> Name=eclipse-java
+> Comment=eclipse-java-4.9.0
+> Exec=/opt/modules/eclipse-java-4.9.0/eclipse
+> Icon=/opt/modules/eclipse-java-4.9.0/icon.xpm
 > Categories=Development;IDE;Java;
 > Keywords=eclipse;Java;IDE;Development;
 > Version=1.0
